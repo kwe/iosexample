@@ -9,8 +9,8 @@ class MyApp extends StatelessWidget {
         textTheme: CupertinoTextThemeData(
           navLargeTitleTextStyle: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 70.0,
-            color: CupertinoColors.activeOrange,
+            fontSize: 60.0,
+            color: CupertinoColors.destructiveRed,
           ),
         ),
       ),
@@ -22,11 +22,24 @@ class MyApp extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Center(
-        child: Text('Hello World!',
-            style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle),
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        items: [
+          BottomNavigationBarItem(
+            icon:Icon(CupertinoIcons.book_solid),
+            title: Text('Articles'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.eye),
+            title: Text('Views'),
+          )
+        ],
       ),
+      tabBuilder: (context, i){
+        return Center(
+          child: Text('Hello, $i'),
+          );
+      },
     );
   }
 }
